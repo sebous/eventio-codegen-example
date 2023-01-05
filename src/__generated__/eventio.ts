@@ -13,19 +13,294 @@ import type {
   UseQueryResult,
   QueryKey,
 } from "@tanstack/react-query";
-import type {
-  RefreshTokenAuthentication200,
-  RefreshTokenAuthenticationBody,
-  CreateAnEvent201,
-  CreateAnEventBodyBody,
-  GetASpecificEvent200,
-  UpdateAnEvent200,
-  AttendAnEvent200,
-  UnattendAnEvent200,
-  RegisterANewUser201,
-  RegisterANewUserBody,
-} from "../sTRVTestprojectAPI.schemas";
-import { customInstance } from "../../api/client";
+import { customInstance } from "../api/client";
+export type RegisterANewUser201 = {
+  /** The user's ID. Not available for create/update operations. */
+  id?: string;
+  /** User's first name */
+  firstName: string;
+  /** User's last name */
+  lastName: string;
+  /** User's email address */
+  email: string;
+  /** ISO-formatted date string when the record was created */
+  createdAt: string;
+  /** ISO-formatted date string when the record was last updated */
+  updatedAt: string;
+};
+
+export type RegisterANewUserBody = {
+  /** User's first name */
+  firstName: string;
+  /** User's last name */
+  lastName: string;
+  /** User's email address */
+  email: string;
+  /** User's password */
+  password?: string;
+};
+
+export type UnattendAnEvent200Owner = {
+  /** The user's ID. Not available for create/update operations. */
+  id?: string;
+  /** User's first name */
+  firstName: string;
+  /** User's last name */
+  lastName: string;
+  /** User's email address */
+  email: string;
+  /** ISO-formatted date string when the record was created */
+  createdAt: string;
+  /** ISO-formatted date string when the record was last updated */
+  updatedAt: string;
+};
+
+export type UnattendAnEvent200 = {
+  /** The event's ID. Not available for create/update operations. */
+  id?: string;
+  /** The event's title */
+  title: string;
+  /** The event's description */
+  description: string;
+  /** ISO-formatted datetime string when the event is about to start */
+  startsAt: string;
+  /** The event's maximum number of attendees. Must be greater than 1. */
+  capacity: number;
+  owner?: UnattendAnEvent200Owner;
+  attendees?: unknown[];
+  /** ISO-formatted date string when the record was created */
+  createdAt: string;
+  /** ISO-formatted date string when the record was last updated */
+  updatedAt: string;
+};
+
+export type AttendAnEvent200Owner = {
+  /** The user's ID. Not available for create/update operations. */
+  id?: string;
+  /** User's first name */
+  firstName: string;
+  /** User's last name */
+  lastName: string;
+  /** User's email address */
+  email: string;
+  /** ISO-formatted date string when the record was created */
+  createdAt: string;
+  /** ISO-formatted date string when the record was last updated */
+  updatedAt: string;
+};
+
+export type AttendAnEvent200 = {
+  /** The event's ID. Not available for create/update operations. */
+  id?: string;
+  /** The event's title */
+  title: string;
+  /** The event's description */
+  description: string;
+  /** ISO-formatted datetime string when the event is about to start */
+  startsAt: string;
+  /** The event's maximum number of attendees. Must be greater than 1. */
+  capacity: number;
+  owner?: AttendAnEvent200Owner;
+  attendees?: unknown[];
+  /** ISO-formatted date string when the record was created */
+  createdAt: string;
+  /** ISO-formatted date string when the record was last updated */
+  updatedAt: string;
+};
+
+export type UpdateAnEvent200Owner = {
+  /** The user's ID. Not available for create/update operations. */
+  id?: string;
+  /** User's first name */
+  firstName: string;
+  /** User's last name */
+  lastName: string;
+  /** User's email address */
+  email: string;
+  /** ISO-formatted date string when the record was created */
+  createdAt: string;
+  /** ISO-formatted date string when the record was last updated */
+  updatedAt: string;
+};
+
+export type UpdateAnEvent200 = {
+  /** The event's ID. Not available for create/update operations. */
+  id?: string;
+  /** The event's title */
+  title: string;
+  /** The event's description */
+  description: string;
+  /** ISO-formatted datetime string when the event is about to start */
+  startsAt: string;
+  /** The event's maximum number of attendees. Must be greater than 1. */
+  capacity: number;
+  owner?: UpdateAnEvent200Owner;
+  attendees?: unknown[];
+  /** ISO-formatted date string when the record was created */
+  createdAt: string;
+  /** ISO-formatted date string when the record was last updated */
+  updatedAt: string;
+};
+
+export type GetASpecificEvent200Owner = {
+  /** The user's ID. Not available for create/update operations. */
+  id?: string;
+  /** User's first name */
+  firstName: string;
+  /** User's last name */
+  lastName: string;
+  /** User's email address */
+  email: string;
+  /** ISO-formatted date string when the record was created */
+  createdAt: string;
+  /** ISO-formatted date string when the record was last updated */
+  updatedAt: string;
+};
+
+export type GetASpecificEvent200 = {
+  /** The event's ID. Not available for create/update operations. */
+  id?: string;
+  /** The event's title */
+  title: string;
+  /** The event's description */
+  description: string;
+  /** ISO-formatted datetime string when the event is about to start */
+  startsAt: string;
+  /** The event's maximum number of attendees. Must be greater than 1. */
+  capacity: number;
+  owner?: GetASpecificEvent200Owner;
+  attendees?: unknown[];
+  /** ISO-formatted date string when the record was created */
+  createdAt: string;
+  /** ISO-formatted date string when the record was last updated */
+  updatedAt: string;
+};
+
+export type CreateAnEvent201Owner = {
+  /** The user's ID. Not available for create/update operations. */
+  id?: string;
+  /** User's first name */
+  firstName: string;
+  /** User's last name */
+  lastName: string;
+  /** User's email address */
+  email: string;
+  /** ISO-formatted date string when the record was created */
+  createdAt: string;
+  /** ISO-formatted date string when the record was last updated */
+  updatedAt: string;
+};
+
+export type CreateAnEvent201 = {
+  /** The event's ID. Not available for create/update operations. */
+  id?: string;
+  /** The event's title */
+  title: string;
+  /** The event's description */
+  description: string;
+  /** ISO-formatted datetime string when the event is about to start */
+  startsAt: string;
+  /** The event's maximum number of attendees. Must be greater than 1. */
+  capacity: number;
+  owner?: CreateAnEvent201Owner;
+  attendees?: unknown[];
+  /** ISO-formatted date string when the record was created */
+  createdAt: string;
+  /** ISO-formatted date string when the record was last updated */
+  updatedAt: string;
+};
+
+export type RefreshTokenAuthentication200 = {
+  /** The user's ID. Not available for create/update operations. */
+  id?: string;
+  /** User's first name */
+  firstName: string;
+  /** User's last name */
+  lastName: string;
+  /** User's email address */
+  email: string;
+  /** ISO-formatted date string when the record was created */
+  createdAt: string;
+  /** ISO-formatted date string when the record was last updated */
+  updatedAt: string;
+};
+
+export type RefreshTokenAuthenticationBody = {
+  refreshToken?: string;
+};
+
+export type CreateAnEventBodyBody = {
+  /** The event's title */
+  title: string;
+  /** The event's description */
+  description: string;
+  /** ISO-formatted datetime string when the event is about to start */
+  startsAt: string;
+  /** The event's maximum number of attendees. Must be greater than 1. */
+  capacity: number;
+};
+
+export interface NewUser {
+  /** User's first name */
+  firstName: string;
+  /** User's last name */
+  lastName: string;
+  /** User's email address */
+  email: string;
+  /** User's password */
+  password?: string;
+}
+
+export interface User {
+  /** The user's ID. Not available for create/update operations. */
+  id?: string;
+  /** User's first name */
+  firstName: string;
+  /** User's last name */
+  lastName: string;
+  /** User's email address */
+  email: string;
+  /** ISO-formatted date string when the record was created */
+  createdAt: string;
+  /** ISO-formatted date string when the record was last updated */
+  updatedAt: string;
+}
+
+export interface NewEvent {
+  /** The event's title */
+  title: string;
+  /** The event's description */
+  description: string;
+  /** ISO-formatted datetime string when the event is about to start */
+  startsAt: string;
+  /** The event's maximum number of attendees. Must be greater than 1. */
+  capacity: number;
+}
+
+export interface Event {
+  /** The event's ID. Not available for create/update operations. */
+  id?: string;
+  /** The event's title */
+  title: string;
+  /** The event's description */
+  description: string;
+  /** ISO-formatted datetime string when the event is about to start */
+  startsAt: string;
+  /** The event's maximum number of attendees. Must be greater than 1. */
+  capacity: number;
+  owner?: User;
+  attendees?: unknown[];
+  /** ISO-formatted date string when the record was created */
+  createdAt: string;
+  /** ISO-formatted date string when the record was last updated */
+  updatedAt: string;
+}
+
+export type Users = unknown;
+
+export type Events = unknown;
+
+export type Authentication = unknown;
 
 /**
  * @summary Refresh Token authentication
@@ -77,6 +352,7 @@ export const useRefreshTokenAuthentication = <
     TContext
   >(mutationFn, mutationOptions);
 };
+
 /**
  * @summary List all events
  */
@@ -169,6 +445,7 @@ export const useCreateAnEvent = <
     TContext
   >(mutationFn, mutationOptions);
 };
+
 /**
  * @summary Get a specific event
  */
@@ -274,6 +551,7 @@ export const useUpdateAnEvent = <
     TContext
   >(mutationFn, mutationOptions);
 };
+
 /**
  * Removes the event from database.
 
@@ -319,6 +597,7 @@ export const useDeleteAnEvent = <
     TContext
   >(mutationFn, mutationOptions);
 };
+
 /**
  * Make yourself an attendee of the event.
  * @summary Attend an event
@@ -365,6 +644,7 @@ export const useAttendAnEvent = <
     TContext
   >(mutationFn, mutationOptions);
 };
+
 /**
  * Remove yourself from the list of attendees.
  * @summary Unattend an event
@@ -411,6 +691,7 @@ export const useUnattendAnEvent = <
     TContext
   >(mutationFn, mutationOptions);
 };
+
 /**
  * @summary Register a new user
  */

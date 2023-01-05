@@ -1,0 +1,1255 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "STRV Testproject API",
+        "version": "",
+        "description": "This is the backend to be used when working on test projects for STRV, specifically web development."
+    },
+    "host": "testproject-api-v2.strv.com",
+    "basePath": "/",
+    "schemes": [
+        "https"
+    ],
+    "paths": {
+        "/auth/native": {
+            "post": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "headers": {},
+                        "examples": {
+                            "application/json": {
+                                "id": "58493e0b691ecc0d3da51bfe",
+                                "firstName": "Robert",
+                                "lastName": "Rossmann",
+                                "email": "robert.rossmann@strv.com",
+                                "createdAt": "2016-12-08T10:46:33.901Z",
+                                "updatedAt": "2016-12-08T10:46:33.901Z"
+                            }
+                        },
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "string",
+                                    "description": "The user's ID. Not available for create/update operations."
+                                },
+                                "firstName": {
+                                    "type": "string",
+                                    "description": "User's first name"
+                                },
+                                "lastName": {
+                                    "type": "string",
+                                    "description": "User's last name"
+                                },
+                                "email": {
+                                    "type": "string",
+                                    "description": "User's email address"
+                                },
+                                "createdAt": {
+                                    "type": "string",
+                                    "description": "ISO-formatted date string when the record was created"
+                                },
+                                "updatedAt": {
+                                    "type": "string",
+                                    "description": "ISO-formatted date string when the record was last updated"
+                                }
+                            },
+                            "required": [
+                                "firstName",
+                                "lastName",
+                                "email",
+                                "createdAt",
+                                "updatedAt"
+                            ]
+                        }
+                    }
+                },
+                "summary": "Refresh Token authentication",
+                "operationId": "Refresh Token authentication",
+                "description": "",
+                "tags": [],
+                "parameters": [
+                    {
+                        "name": "APIKey",
+                        "in": "header",
+                        "description": "e.g. YourAPIKey",
+                        "required": false,
+                        "x-example": "YourAPIKey",
+                        "type": "string"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "refreshToken": {
+                                    "type": "string"
+                                }
+                            },
+                            "example": {
+                                "refreshToken": "secret refresh token"
+                            }
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ]
+            }
+        },
+        "/events": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "headers": {},
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "id": "58493db9691ecc0d3da51bfd",
+                                    "title": "Awesome event",
+                                    "description": "A bunch of people doing awesome stuff",
+                                    "startsAt": "2016-12-08T10:46:33.901Z",
+                                    "capacity": 50,
+                                    "owner": {
+                                        "id": "58493e0b691ecc0d3da51bfe",
+                                        "firstName": "Robert",
+                                        "lastName": "Rossmann",
+                                        "email": "robert.rossmann@strv.com",
+                                        "createdAt": "2016-12-08T10:46:33.901Z",
+                                        "updatedAt": "2016-12-08T10:46:33.901Z"
+                                    },
+                                    "attendees": [
+                                        {
+                                            "id": "58493e0b691ecc0d3da51bfe",
+                                            "firstName": "Robert",
+                                            "lastName": "Rossmann",
+                                            "email": "robert.rossmann@strv.com",
+                                            "createdAt": "2016-12-08T10:46:33.901Z",
+                                            "updatedAt": "2016-12-08T10:46:33.901Z"
+                                        }
+                                    ],
+                                    "createdAt": "2016-12-08T10:46:33.901Z",
+                                    "updatedAt": "2016-12-08T10:46:33.901Z"
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "type": "array",
+                            "items": {}
+                        }
+                    }
+                },
+                "summary": "List all events",
+                "operationId": "List all events",
+                "description": "",
+                "tags": [],
+                "parameters": [
+                    {
+                        "name": "APIKey",
+                        "in": "header",
+                        "description": "e.g. YourAPIKey",
+                        "required": false,
+                        "x-example": "YourAPIKey",
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ]
+            },
+            "post": {
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "headers": {},
+                        "examples": {
+                            "application/json": {
+                                "id": "58493db9691ecc0d3da51bfd",
+                                "title": "Awesome event",
+                                "description": "A bunch of people doing awesome stuff",
+                                "startsAt": "2016-12-08T10:46:33.901Z",
+                                "capacity": 50,
+                                "owner": {
+                                    "id": "58493e0b691ecc0d3da51bfe",
+                                    "firstName": "Robert",
+                                    "lastName": "Rossmann",
+                                    "email": "robert.rossmann@strv.com",
+                                    "createdAt": "2016-12-08T10:46:33.901Z",
+                                    "updatedAt": "2016-12-08T10:46:33.901Z"
+                                },
+                                "attendees": [
+                                    {
+                                        "id": "58493e0b691ecc0d3da51bfe",
+                                        "firstName": "Robert",
+                                        "lastName": "Rossmann",
+                                        "email": "robert.rossmann@strv.com",
+                                        "createdAt": "2016-12-08T10:46:33.901Z",
+                                        "updatedAt": "2016-12-08T10:46:33.901Z"
+                                    }
+                                ],
+                                "createdAt": "2016-12-08T10:46:33.901Z",
+                                "updatedAt": "2016-12-08T10:46:33.901Z"
+                            }
+                        },
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "string",
+                                    "description": "The event's ID. Not available for create/update operations."
+                                },
+                                "title": {
+                                    "type": "string",
+                                    "description": "The event's title"
+                                },
+                                "description": {
+                                    "type": "string",
+                                    "description": "The event's description"
+                                },
+                                "startsAt": {
+                                    "type": "string",
+                                    "description": "ISO-formatted datetime string when the event is about to start"
+                                },
+                                "capacity": {
+                                    "type": "number",
+                                    "description": "The event's maximum number of attendees. Must be greater than 1."
+                                },
+                                "owner": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "string",
+                                            "description": "The user's ID. Not available for create/update operations."
+                                        },
+                                        "firstName": {
+                                            "type": "string",
+                                            "description": "User's first name"
+                                        },
+                                        "lastName": {
+                                            "type": "string",
+                                            "description": "User's last name"
+                                        },
+                                        "email": {
+                                            "type": "string",
+                                            "description": "User's email address"
+                                        },
+                                        "createdAt": {
+                                            "type": "string",
+                                            "description": "ISO-formatted date string when the record was created"
+                                        },
+                                        "updatedAt": {
+                                            "type": "string",
+                                            "description": "ISO-formatted date string when the record was last updated"
+                                        }
+                                    },
+                                    "required": [
+                                        "firstName",
+                                        "lastName",
+                                        "email",
+                                        "createdAt",
+                                        "updatedAt"
+                                    ]
+                                },
+                                "attendees": {
+                                    "type": "array",
+                                    "items": {}
+                                },
+                                "createdAt": {
+                                    "type": "string",
+                                    "description": "ISO-formatted date string when the record was created"
+                                },
+                                "updatedAt": {
+                                    "type": "string",
+                                    "description": "ISO-formatted date string when the record was last updated"
+                                }
+                            },
+                            "required": [
+                                "title",
+                                "description",
+                                "startsAt",
+                                "capacity",
+                                "createdAt",
+                                "updatedAt"
+                            ]
+                        }
+                    }
+                },
+                "summary": "Create an event",
+                "operationId": "Create an event",
+                "description": "",
+                "tags": [],
+                "parameters": [
+                    {
+                        "name": "APIKey",
+                        "in": "header",
+                        "description": "e.g. YourAPIKey",
+                        "required": false,
+                        "x-example": "YourAPIKey",
+                        "type": "string"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "title": {
+                                    "type": "string",
+                                    "description": "The event's title"
+                                },
+                                "description": {
+                                    "type": "string",
+                                    "description": "The event's description"
+                                },
+                                "startsAt": {
+                                    "type": "string",
+                                    "description": "ISO-formatted datetime string when the event is about to start"
+                                },
+                                "capacity": {
+                                    "type": "number",
+                                    "description": "The event's maximum number of attendees. Must be greater than 1."
+                                }
+                            },
+                            "required": [
+                                "title",
+                                "description",
+                                "startsAt",
+                                "capacity"
+                            ],
+                            "example": {
+                                "title": "Awesome event",
+                                "description": "A bunch of people doing awesome stuff",
+                                "startsAt": "2016-12-08T10:46:33.901Z",
+                                "capacity": 50
+                            }
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ]
+            }
+        },
+        "/events/{id}": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "headers": {},
+                        "examples": {
+                            "application/json": {
+                                "id": "58493db9691ecc0d3da51bfd",
+                                "title": "Awesome event",
+                                "description": "A bunch of people doing awesome stuff",
+                                "startsAt": "2016-12-08T10:46:33.901Z",
+                                "capacity": 50,
+                                "owner": {
+                                    "id": "58493e0b691ecc0d3da51bfe",
+                                    "firstName": "Robert",
+                                    "lastName": "Rossmann",
+                                    "email": "robert.rossmann@strv.com",
+                                    "createdAt": "2016-12-08T10:46:33.901Z",
+                                    "updatedAt": "2016-12-08T10:46:33.901Z"
+                                },
+                                "attendees": [
+                                    {
+                                        "id": "58493e0b691ecc0d3da51bfe",
+                                        "firstName": "Robert",
+                                        "lastName": "Rossmann",
+                                        "email": "robert.rossmann@strv.com",
+                                        "createdAt": "2016-12-08T10:46:33.901Z",
+                                        "updatedAt": "2016-12-08T10:46:33.901Z"
+                                    }
+                                ],
+                                "createdAt": "2016-12-08T10:46:33.901Z",
+                                "updatedAt": "2016-12-08T10:46:33.901Z"
+                            }
+                        },
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "string",
+                                    "description": "The event's ID. Not available for create/update operations."
+                                },
+                                "title": {
+                                    "type": "string",
+                                    "description": "The event's title"
+                                },
+                                "description": {
+                                    "type": "string",
+                                    "description": "The event's description"
+                                },
+                                "startsAt": {
+                                    "type": "string",
+                                    "description": "ISO-formatted datetime string when the event is about to start"
+                                },
+                                "capacity": {
+                                    "type": "number",
+                                    "description": "The event's maximum number of attendees. Must be greater than 1."
+                                },
+                                "owner": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "string",
+                                            "description": "The user's ID. Not available for create/update operations."
+                                        },
+                                        "firstName": {
+                                            "type": "string",
+                                            "description": "User's first name"
+                                        },
+                                        "lastName": {
+                                            "type": "string",
+                                            "description": "User's last name"
+                                        },
+                                        "email": {
+                                            "type": "string",
+                                            "description": "User's email address"
+                                        },
+                                        "createdAt": {
+                                            "type": "string",
+                                            "description": "ISO-formatted date string when the record was created"
+                                        },
+                                        "updatedAt": {
+                                            "type": "string",
+                                            "description": "ISO-formatted date string when the record was last updated"
+                                        }
+                                    },
+                                    "required": [
+                                        "firstName",
+                                        "lastName",
+                                        "email",
+                                        "createdAt",
+                                        "updatedAt"
+                                    ]
+                                },
+                                "attendees": {
+                                    "type": "array",
+                                    "items": {}
+                                },
+                                "createdAt": {
+                                    "type": "string",
+                                    "description": "ISO-formatted date string when the record was created"
+                                },
+                                "updatedAt": {
+                                    "type": "string",
+                                    "description": "ISO-formatted date string when the record was last updated"
+                                }
+                            },
+                            "required": [
+                                "title",
+                                "description",
+                                "startsAt",
+                                "capacity",
+                                "createdAt",
+                                "updatedAt"
+                            ]
+                        }
+                    }
+                },
+                "summary": "Get a specific event",
+                "operationId": "Get a specific event",
+                "description": "",
+                "tags": [],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "x-example": "58493db9691ecc0d3da51bfd",
+                        "type": "string"
+                    },
+                    {
+                        "name": "APIKey",
+                        "in": "header",
+                        "description": "e.g. YourAPIKey",
+                        "required": false,
+                        "x-example": "YourAPIKey",
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ]
+            },
+            "patch": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "headers": {},
+                        "examples": {
+                            "application/json": {
+                                "id": "58493db9691ecc0d3da51bfd",
+                                "title": "Awesome event",
+                                "description": "A bunch of people doing awesome stuff",
+                                "startsAt": "2016-12-08T10:46:33.901Z",
+                                "capacity": 50,
+                                "owner": {
+                                    "id": "58493e0b691ecc0d3da51bfe",
+                                    "firstName": "Robert",
+                                    "lastName": "Rossmann",
+                                    "email": "robert.rossmann@strv.com",
+                                    "createdAt": "2016-12-08T10:46:33.901Z",
+                                    "updatedAt": "2016-12-08T10:46:33.901Z"
+                                },
+                                "attendees": [
+                                    {
+                                        "id": "58493e0b691ecc0d3da51bfe",
+                                        "firstName": "Robert",
+                                        "lastName": "Rossmann",
+                                        "email": "robert.rossmann@strv.com",
+                                        "createdAt": "2016-12-08T10:46:33.901Z",
+                                        "updatedAt": "2016-12-08T10:46:33.901Z"
+                                    }
+                                ],
+                                "createdAt": "2016-12-08T10:46:33.901Z",
+                                "updatedAt": "2016-12-08T10:46:33.901Z"
+                            }
+                        },
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "string",
+                                    "description": "The event's ID. Not available for create/update operations."
+                                },
+                                "title": {
+                                    "type": "string",
+                                    "description": "The event's title"
+                                },
+                                "description": {
+                                    "type": "string",
+                                    "description": "The event's description"
+                                },
+                                "startsAt": {
+                                    "type": "string",
+                                    "description": "ISO-formatted datetime string when the event is about to start"
+                                },
+                                "capacity": {
+                                    "type": "number",
+                                    "description": "The event's maximum number of attendees. Must be greater than 1."
+                                },
+                                "owner": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "string",
+                                            "description": "The user's ID. Not available for create/update operations."
+                                        },
+                                        "firstName": {
+                                            "type": "string",
+                                            "description": "User's first name"
+                                        },
+                                        "lastName": {
+                                            "type": "string",
+                                            "description": "User's last name"
+                                        },
+                                        "email": {
+                                            "type": "string",
+                                            "description": "User's email address"
+                                        },
+                                        "createdAt": {
+                                            "type": "string",
+                                            "description": "ISO-formatted date string when the record was created"
+                                        },
+                                        "updatedAt": {
+                                            "type": "string",
+                                            "description": "ISO-formatted date string when the record was last updated"
+                                        }
+                                    },
+                                    "required": [
+                                        "firstName",
+                                        "lastName",
+                                        "email",
+                                        "createdAt",
+                                        "updatedAt"
+                                    ]
+                                },
+                                "attendees": {
+                                    "type": "array",
+                                    "items": {}
+                                },
+                                "createdAt": {
+                                    "type": "string",
+                                    "description": "ISO-formatted date string when the record was created"
+                                },
+                                "updatedAt": {
+                                    "type": "string",
+                                    "description": "ISO-formatted date string when the record was last updated"
+                                }
+                            },
+                            "required": [
+                                "title",
+                                "description",
+                                "startsAt",
+                                "capacity",
+                                "createdAt",
+                                "updatedAt"
+                            ]
+                        }
+                    }
+                },
+                "summary": "Update an event",
+                "operationId": "Update an event",
+                "description": "Update some properties on the event.\n\nThis uses patch semantics, so only supply the properties you wish to change, otherwise the request might be rejected due to some fields being read-only.",
+                "tags": [],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "x-example": "58493db9691ecc0d3da51bfd",
+                        "type": "string"
+                    },
+                    {
+                        "name": "APIKey",
+                        "in": "header",
+                        "description": "e.g. YourAPIKey",
+                        "required": false,
+                        "x-example": "YourAPIKey",
+                        "type": "string"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "title": {
+                                    "type": "string",
+                                    "description": "The event's title"
+                                },
+                                "description": {
+                                    "type": "string",
+                                    "description": "The event's description"
+                                },
+                                "startsAt": {
+                                    "type": "string",
+                                    "description": "ISO-formatted datetime string when the event is about to start"
+                                },
+                                "capacity": {
+                                    "type": "number",
+                                    "description": "The event's maximum number of attendees. Must be greater than 1."
+                                }
+                            },
+                            "required": [
+                                "title",
+                                "description",
+                                "startsAt",
+                                "capacity"
+                            ],
+                            "example": {
+                                "title": "Awesome event",
+                                "description": "A bunch of people doing awesome stuff",
+                                "startsAt": "2016-12-08T10:46:33.901Z",
+                                "capacity": 50
+                            }
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ]
+            },
+            "delete": {
+                "responses": {
+                    "204": {
+                        "description": "No Content",
+                        "headers": {},
+                        "examples": {}
+                    }
+                },
+                "summary": "Delete an event",
+                "operationId": "Delete an event",
+                "description": "Removes the event from database.\n\nOnly the event's owner can do this.",
+                "tags": [],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "x-example": "58493db9691ecc0d3da51bfd",
+                        "type": "string"
+                    },
+                    {
+                        "name": "APIKey",
+                        "in": "header",
+                        "description": "e.g. YourAPIKey",
+                        "required": false,
+                        "x-example": "YourAPIKey",
+                        "type": "string"
+                    }
+                ]
+            }
+        },
+        "/events/{id}/attendees/me": {
+            "post": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "headers": {},
+                        "examples": {
+                            "application/json": {
+                                "id": "58493db9691ecc0d3da51bfd",
+                                "title": "Awesome event",
+                                "description": "A bunch of people doing awesome stuff",
+                                "startsAt": "2016-12-08T10:46:33.901Z",
+                                "capacity": 50,
+                                "owner": {
+                                    "id": "58493e0b691ecc0d3da51bfe",
+                                    "firstName": "Robert",
+                                    "lastName": "Rossmann",
+                                    "email": "robert.rossmann@strv.com",
+                                    "createdAt": "2016-12-08T10:46:33.901Z",
+                                    "updatedAt": "2016-12-08T10:46:33.901Z"
+                                },
+                                "attendees": [
+                                    {
+                                        "id": "58493e0b691ecc0d3da51bfe",
+                                        "firstName": "Robert",
+                                        "lastName": "Rossmann",
+                                        "email": "robert.rossmann@strv.com",
+                                        "createdAt": "2016-12-08T10:46:33.901Z",
+                                        "updatedAt": "2016-12-08T10:46:33.901Z"
+                                    }
+                                ],
+                                "createdAt": "2016-12-08T10:46:33.901Z",
+                                "updatedAt": "2016-12-08T10:46:33.901Z"
+                            }
+                        },
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "string",
+                                    "description": "The event's ID. Not available for create/update operations."
+                                },
+                                "title": {
+                                    "type": "string",
+                                    "description": "The event's title"
+                                },
+                                "description": {
+                                    "type": "string",
+                                    "description": "The event's description"
+                                },
+                                "startsAt": {
+                                    "type": "string",
+                                    "description": "ISO-formatted datetime string when the event is about to start"
+                                },
+                                "capacity": {
+                                    "type": "number",
+                                    "description": "The event's maximum number of attendees. Must be greater than 1."
+                                },
+                                "owner": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "string",
+                                            "description": "The user's ID. Not available for create/update operations."
+                                        },
+                                        "firstName": {
+                                            "type": "string",
+                                            "description": "User's first name"
+                                        },
+                                        "lastName": {
+                                            "type": "string",
+                                            "description": "User's last name"
+                                        },
+                                        "email": {
+                                            "type": "string",
+                                            "description": "User's email address"
+                                        },
+                                        "createdAt": {
+                                            "type": "string",
+                                            "description": "ISO-formatted date string when the record was created"
+                                        },
+                                        "updatedAt": {
+                                            "type": "string",
+                                            "description": "ISO-formatted date string when the record was last updated"
+                                        }
+                                    },
+                                    "required": [
+                                        "firstName",
+                                        "lastName",
+                                        "email",
+                                        "createdAt",
+                                        "updatedAt"
+                                    ]
+                                },
+                                "attendees": {
+                                    "type": "array",
+                                    "items": {}
+                                },
+                                "createdAt": {
+                                    "type": "string",
+                                    "description": "ISO-formatted date string when the record was created"
+                                },
+                                "updatedAt": {
+                                    "type": "string",
+                                    "description": "ISO-formatted date string when the record was last updated"
+                                }
+                            },
+                            "required": [
+                                "title",
+                                "description",
+                                "startsAt",
+                                "capacity",
+                                "createdAt",
+                                "updatedAt"
+                            ]
+                        }
+                    }
+                },
+                "summary": "Attend an event",
+                "operationId": "Attend an event",
+                "description": "Make yourself an attendee of the event.",
+                "tags": [],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "x-example": "58493db9691ecc0d3da51bfd",
+                        "type": "string"
+                    },
+                    {
+                        "name": "APIKey",
+                        "in": "header",
+                        "description": "e.g. YourAPIKey",
+                        "required": false,
+                        "x-example": "YourAPIKey",
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ]
+            },
+            "delete": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "headers": {},
+                        "examples": {
+                            "application/json": {
+                                "id": "58493db9691ecc0d3da51bfd",
+                                "title": "Awesome event",
+                                "description": "A bunch of people doing awesome stuff",
+                                "startsAt": "2016-12-08T10:46:33.901Z",
+                                "capacity": 50,
+                                "owner": {
+                                    "id": "58493e0b691ecc0d3da51bfe",
+                                    "firstName": "Robert",
+                                    "lastName": "Rossmann",
+                                    "email": "robert.rossmann@strv.com",
+                                    "createdAt": "2016-12-08T10:46:33.901Z",
+                                    "updatedAt": "2016-12-08T10:46:33.901Z"
+                                },
+                                "attendees": [
+                                    {
+                                        "id": "58493e0b691ecc0d3da51bfe",
+                                        "firstName": "Robert",
+                                        "lastName": "Rossmann",
+                                        "email": "robert.rossmann@strv.com",
+                                        "createdAt": "2016-12-08T10:46:33.901Z",
+                                        "updatedAt": "2016-12-08T10:46:33.901Z"
+                                    }
+                                ],
+                                "createdAt": "2016-12-08T10:46:33.901Z",
+                                "updatedAt": "2016-12-08T10:46:33.901Z"
+                            }
+                        },
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "string",
+                                    "description": "The event's ID. Not available for create/update operations."
+                                },
+                                "title": {
+                                    "type": "string",
+                                    "description": "The event's title"
+                                },
+                                "description": {
+                                    "type": "string",
+                                    "description": "The event's description"
+                                },
+                                "startsAt": {
+                                    "type": "string",
+                                    "description": "ISO-formatted datetime string when the event is about to start"
+                                },
+                                "capacity": {
+                                    "type": "number",
+                                    "description": "The event's maximum number of attendees. Must be greater than 1."
+                                },
+                                "owner": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "string",
+                                            "description": "The user's ID. Not available for create/update operations."
+                                        },
+                                        "firstName": {
+                                            "type": "string",
+                                            "description": "User's first name"
+                                        },
+                                        "lastName": {
+                                            "type": "string",
+                                            "description": "User's last name"
+                                        },
+                                        "email": {
+                                            "type": "string",
+                                            "description": "User's email address"
+                                        },
+                                        "createdAt": {
+                                            "type": "string",
+                                            "description": "ISO-formatted date string when the record was created"
+                                        },
+                                        "updatedAt": {
+                                            "type": "string",
+                                            "description": "ISO-formatted date string when the record was last updated"
+                                        }
+                                    },
+                                    "required": [
+                                        "firstName",
+                                        "lastName",
+                                        "email",
+                                        "createdAt",
+                                        "updatedAt"
+                                    ]
+                                },
+                                "attendees": {
+                                    "type": "array",
+                                    "items": {}
+                                },
+                                "createdAt": {
+                                    "type": "string",
+                                    "description": "ISO-formatted date string when the record was created"
+                                },
+                                "updatedAt": {
+                                    "type": "string",
+                                    "description": "ISO-formatted date string when the record was last updated"
+                                }
+                            },
+                            "required": [
+                                "title",
+                                "description",
+                                "startsAt",
+                                "capacity",
+                                "createdAt",
+                                "updatedAt"
+                            ]
+                        }
+                    }
+                },
+                "summary": "Unattend an event",
+                "operationId": "Unattend an event",
+                "description": "Remove yourself from the list of attendees.",
+                "tags": [],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "x-example": "58493db9691ecc0d3da51bfd",
+                        "type": "string"
+                    },
+                    {
+                        "name": "APIKey",
+                        "in": "header",
+                        "description": "e.g. YourAPIKey",
+                        "required": false,
+                        "x-example": "YourAPIKey",
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ]
+            }
+        },
+        "/users": {
+            "post": {
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "headers": {},
+                        "examples": {
+                            "application/json": {
+                                "id": "58493e0b691ecc0d3da51bfe",
+                                "firstName": "Robert",
+                                "lastName": "Rossmann",
+                                "email": "robert.rossmann@strv.com",
+                                "createdAt": "2016-12-08T10:46:33.901Z",
+                                "updatedAt": "2016-12-08T10:46:33.901Z"
+                            }
+                        },
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "string",
+                                    "description": "The user's ID. Not available for create/update operations."
+                                },
+                                "firstName": {
+                                    "type": "string",
+                                    "description": "User's first name"
+                                },
+                                "lastName": {
+                                    "type": "string",
+                                    "description": "User's last name"
+                                },
+                                "email": {
+                                    "type": "string",
+                                    "description": "User's email address"
+                                },
+                                "createdAt": {
+                                    "type": "string",
+                                    "description": "ISO-formatted date string when the record was created"
+                                },
+                                "updatedAt": {
+                                    "type": "string",
+                                    "description": "ISO-formatted date string when the record was last updated"
+                                }
+                            },
+                            "required": [
+                                "firstName",
+                                "lastName",
+                                "email",
+                                "createdAt",
+                                "updatedAt"
+                            ]
+                        }
+                    }
+                },
+                "summary": "Register a new user",
+                "operationId": "Register a new user",
+                "description": "",
+                "tags": [],
+                "parameters": [
+                    {
+                        "name": "APIKey",
+                        "in": "header",
+                        "description": "e.g. YourAPIKey",
+                        "required": false,
+                        "x-example": "YourAPIKey",
+                        "type": "string"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "firstName": {
+                                    "type": "string",
+                                    "description": "User's first name"
+                                },
+                                "lastName": {
+                                    "type": "string",
+                                    "description": "User's last name"
+                                },
+                                "email": {
+                                    "type": "string",
+                                    "description": "User's email address"
+                                },
+                                "password": {
+                                    "type": "string",
+                                    "description": "User's password"
+                                }
+                            },
+                            "required": [
+                                "firstName",
+                                "lastName",
+                                "email"
+                            ],
+                            "example": {
+                                "firstName": "Robert",
+                                "lastName": "Rossmann",
+                                "email": "robert.rossmann@strv.com",
+                                "password": "top secret!"
+                            }
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ]
+            }
+        }
+    },
+    "definitions": {
+        "Authentication": {},
+        "Events": {},
+        "Users": {},
+        "Event": {
+            "type": "object",
+            "required": [
+                "title",
+                "description",
+                "startsAt",
+                "capacity",
+                "createdAt",
+                "updatedAt"
+            ],
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "example": "58493db9691ecc0d3da51bfd",
+                    "description": "The event's ID. Not available for create/update operations."
+                },
+                "title": {
+                    "type": "string",
+                    "example": "Awesome event",
+                    "description": "The event's title"
+                },
+                "description": {
+                    "type": "string",
+                    "example": "A bunch of people doing awesome stuff",
+                    "description": "The event's description"
+                },
+                "startsAt": {
+                    "type": "string",
+                    "example": "2016-12-08T10:46:33.901Z",
+                    "description": "ISO-formatted datetime string when the event is about to start"
+                },
+                "capacity": {
+                    "type": "number",
+                    "example": 50,
+                    "description": "The event's maximum number of attendees. Must be greater than 1."
+                },
+                "owner": {
+                    "$ref": "#/definitions/User"
+                },
+                "attendees": {
+                    "type": "array",
+                    "items": {}
+                },
+                "createdAt": {
+                    "type": "string",
+                    "example": "2016-12-08T10:46:33.901Z",
+                    "description": "ISO-formatted date string when the record was created"
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "example": "2016-12-08T10:46:33.901Z",
+                    "description": "ISO-formatted date string when the record was last updated"
+                }
+            }
+        },
+        "NewEvent": {
+            "type": "object",
+            "required": [
+                "title",
+                "description",
+                "startsAt",
+                "capacity"
+            ],
+            "properties": {
+                "title": {
+                    "type": "string",
+                    "example": "Awesome event",
+                    "description": "The event's title"
+                },
+                "description": {
+                    "type": "string",
+                    "example": "A bunch of people doing awesome stuff",
+                    "description": "The event's description"
+                },
+                "startsAt": {
+                    "type": "string",
+                    "example": "2016-12-08T10:46:33.901Z",
+                    "description": "ISO-formatted datetime string when the event is about to start"
+                },
+                "capacity": {
+                    "type": "number",
+                    "example": 50,
+                    "description": "The event's maximum number of attendees. Must be greater than 1."
+                }
+            }
+        },
+        "User": {
+            "type": "object",
+            "required": [
+                "firstName",
+                "lastName",
+                "email",
+                "createdAt",
+                "updatedAt"
+            ],
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "example": "58493e0b691ecc0d3da51bfe",
+                    "description": "The user's ID. Not available for create/update operations."
+                },
+                "firstName": {
+                    "type": "string",
+                    "example": "Robert",
+                    "description": "User's first name"
+                },
+                "lastName": {
+                    "type": "string",
+                    "example": "Rossmann",
+                    "description": "User's last name"
+                },
+                "email": {
+                    "type": "string",
+                    "example": "robert.rossmann@strv.com",
+                    "description": "User's email address"
+                },
+                "createdAt": {
+                    "type": "string",
+                    "example": "2016-12-08T10:46:33.901Z",
+                    "description": "ISO-formatted date string when the record was created"
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "example": "2016-12-08T10:46:33.901Z",
+                    "description": "ISO-formatted date string when the record was last updated"
+                }
+            }
+        },
+        "NewUser": {
+            "type": "object",
+            "required": [
+                "firstName",
+                "lastName",
+                "email"
+            ],
+            "properties": {
+                "firstName": {
+                    "type": "string",
+                    "example": "Robert",
+                    "description": "User's first name"
+                },
+                "lastName": {
+                    "type": "string",
+                    "example": "Rossmann",
+                    "description": "User's last name"
+                },
+                "email": {
+                    "type": "string",
+                    "example": "robert.rossmann@strv.com",
+                    "description": "User's email address"
+                },
+                "password": {
+                    "type": "string",
+                    "example": "top secret!",
+                    "description": "User's password"
+                }
+            }
+        }
+    },
+    "securityDefinitions": {},
+    "tags": []
+}
