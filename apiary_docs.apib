@@ -1,0 +1,202 @@
+FORMAT: 1A
+HOST: https://testproject-api-v2.strv.com/
+
+# STRV Testproject API
+
+This is the backend to be used when working on test projects for STRV, specifically web development.
+
+## Authentication [/auth]
+
+The authorisation endpoints all return the access token in the `Authorization` header in the response on successful login. Use this token in all subsequent requests.
+
+Note, however, that the access token expires after some time - you might have to obtain a new token after this time. When backend receives expired JWT token, it will return `User.NotAuthenticated` error.
+
+Do not confuse this with `APIKey`, which is your personal identification sent to you via email. If you don't send it or it is incorrect, error `Candidate.MissingAPIKey` or `Candidate.InvalidAPIKey` is returned.
+
+### Email+Password authentication [POST /auth/native]
+
++ Request (application/json)
+    + Headers
+        
+            APIKey: YourAPIKey
+
+    + Attributes
+        
+        - email: robert.rossmann@strv.com
+        - password: top secret!
+
++ Response 200 (application/json)
+    + Headers
+
+            Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiMTIzIn0sImlhdCI6MTQ4MTE5NzA3OSwiZXhwIjoxNDgxMjAwNjc5LCJpc3MiOiJjb20uc3Rydi50ZXN0cHJvamVjdC1hcGkuZGV2ZWxvcG1lbnQifQ.EafLs80aHAFTpg_jsYQ1MBISttBhzgpGaTYbgIr4i7M
+            Refresh-Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJydWNlYmFubmVyQHN0cnYuY29tIiwiaWF0IjoxNTI4MjcwMTc4LCJpc3MiOiJjb20uc3Rydi50ZXN0cHJaamVjdD1hcEkucHJvZHVjdGlvbiJ9.C90rYeCqkMuRRAsxHS7EcUPe2s6ysQRgyQT1a1wxKnM
+
+    + Attributes (User)
+    
+### Refresh Token authentication [POST /auth/native]
+
++ Request (application/json)
+    + Headers
+        
+            APIKey: YourAPIKey
+
+    + Attributes
+        
+        - refreshToken: secret refresh token
+
++ Response 200 (application/json)
+    + Headers
+
+            Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiMTIzIn0sImlhdCI6MTQ4MTE5NzA3OSwiZXhwIjoxNDgxMjAwNjc5LCJpc3MiOiJjb20uc3Rydi50ZXN0cHJvamVjdC1hcGkuZGV2ZWxvcG1lbnQifQ.EafLs80aHAFTpg_jsYQ1MBISttBhzgpGaTYbgIr4i7M
+
+    + Attributes (User)
+
+## Events [/events]
+
+### List all events [GET]
+
++ Request (application/json)
+    + Headers
+        
+            APIKey: YourAPIKey
+
++ Response 200 (application/json)
+    + Attributes (array[Event])
+
+### Get a specific event [GET /events/{id}]
+
++ Request (application/json)
+    + Headers
+        
+            APIKey: YourAPIKey
+
++ Parameters
+    + id:  58493db9691ecc0d3da51bfd
++ Response 200 (application/json)
+    + Attributes (Event)
+
+### Create an event [POST]
+
++ Request (application/json)
+    + Headers
+        
+            APIKey: YourAPIKey
+            Authorization: UsersAccessToken
+    
+    + Attributes (NewEvent)
++ Response 201 (application/json)
+    + Attributes (Event)
+
+### Update an event [PATCH /events/{id}]
+
+Update some properties on the event.
+
+This uses patch semantics, so only supply the properties you wish to change, otherwise the request might be rejected due to some fields being read-only.
+
++ Parameters
+    + id:  58493db9691ecc0d3da51bfd
++ Request (application/json)
+    + Headers
+        
+            APIKey: YourAPIKey
+            Authorization: UsersAccessToken
+
+    + Attributes (NewEvent)
++ Response 200 (application/json)
+    + Attributes (Event)
+
+### Delete an event [DELETE /events/{id}]
+
+Removes the event from database.
+
+Only the event's owner can do this.
+
++ Request (application/json)
+    + Headers
+        
+            APIKey: YourAPIKey
+            Authorization: UsersAccessToken
+
++ Parameters
+    + id:  58493db9691ecc0d3da51bfd
++ Response 204
+
+### Attend an event [POST /events/{id}/attendees/me]
+
+Make yourself an attendee of the event.
+
++ Request (application/json)
+    + Headers
+        
+            APIKey: YourAPIKey
+            Authorization: UsersAccessToken
+
++ Parameters
+    + id: 58493db9691ecc0d3da51bfd
++ Response 200 (application/json)
+    + Attributes (Event)
+
+### Unattend an event [DELETE /events/{id}/attendees/me]
+
+Remove yourself from the list of attendees.
+
++ Request (application/json)
+    + Headers
+        
+            APIKey: YourAPIKey
+            Authorization: UsersAccessToken
+
++ Parameters
+    + id: 58493db9691ecc0d3da51bfd
++ Response 200 (application/json)
+    + Attributes (Event)
+
+## Users [/users]
+
+### Register a new user [POST]
+
++ Request (application/json)
+    + Headers
+        
+            APIKey: YourAPIKey
+
+    + Attributes (NewUser)
++ Response 201 (application/json)
+    + Attributes (User)
+
+# Data Structures
+
+## Event
+
++ id: 58493db9691ecc0d3da51bfd (string) - The event's ID. Not available for create/update operations.
++ title: Awesome event (string, required) - The event's title
++ description: A bunch of people doing awesome stuff (string, required) - The event's description
++ startsAt: `2016-12-08T10:46:33.901Z` (string, required) - ISO-formatted datetime string when the event is about to start
++ capacity: 50 (number, required) - The event's maximum number of attendees. Must be greater than 1.
++ owner (User)
++ attendees (array[User])
++ createdAt: `2016-12-08T10:46:33.901Z` (string, required) - ISO-formatted date string when the record was created
++ updatedAt: `2016-12-08T10:46:33.901Z` (string, required) - ISO-formatted date string when the record was last updated
+
+## NewEvent
+
++ title: Awesome event (string, required) - The event's title
++ description: A bunch of people doing awesome stuff (string, required) - The event's description
++ startsAt: `2016-12-08T10:46:33.901Z` (string, required) - ISO-formatted datetime string when the event is about to start
++ capacity: 50 (number, required) - The event's maximum number of attendees. Must be greater than 1.
+
+## User
+
++ id: 58493e0b691ecc0d3da51bfe (string) - The user's ID. Not available for create/update operations.
++ firstName: Robert (string, required) - User's first name
++ lastName: Rossmann (string, required) - User's last name
++ email: robert.rossmann@strv.com (string, required) - User's email address
++ createdAt: `2016-12-08T10:46:33.901Z` (string, required) - ISO-formatted date string when the record was created
++ updatedAt: `2016-12-08T10:46:33.901Z` (string, required) - ISO-formatted date string when the record was last updated
+
+## NewUser
+
++ firstName: Robert (string, required) - User's first name
++ lastName: Rossmann (string, required) - User's last name
++ email: robert.rossmann@strv.com (string, required) - User's email address
++ password: top secret! (string) - User's password
